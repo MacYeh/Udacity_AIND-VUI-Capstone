@@ -13170,15 +13170,19 @@ Epoch 20/20
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Question 1:</strong> Use the plot above to analyze the performance of each of the attempted architectures.  Which performs best?  Provide an explanation regarding why you think some models perform better than others.</p>
 <p><strong>Answer:</strong></p>
+<p>The list of the model being created:</p>
 <ul>
-<li><strong>Model 0</strong> - Single RNN</li>
-<li><strong>Model 1</strong> - Single RNN + Dense</li>
-<li><strong>Model 2</strong> - CNN + Single RNN + Dense</li>
-<li><strong>Model 3</strong> - Deep RNN + Dense</li>
-<li><strong>Model 4</strong> - Bidirectional RNN + Dense</li>
-<li><strong>Model 5</strong> - CNN + Bidirectional RNN + Dense</li>
+<li><strong>model_0</strong> - Single RNN</li>
+<li><strong>model_1</strong> - Single RNN + Dense</li>
+<li><strong>model_2</strong> - CNN + Single RNN + Dense</li>
+<li><strong>model_3</strong> - Deep RNN + Dense</li>
+<li><strong>model_4</strong> - Bidirectional RNN + Dense</li>
+<li><strong>model_5</strong> - CNN + Bidirectional RNN + Dense</li>
 </ul>
-<p>In terms of training performance, the best model is the customized Model 5 with CNN and Bidirecional RNN. Both CNN and Bi-RNN are required to have the pattern extraction and time-series modeling. The validation results are worse in all 6 models, however, due to the overfitted Models.</p>
+<p>In terms of training performance, the best model is my customized Model 5 with CNN and Bidirecional RNN. Both CNN and Bi-RNN are required to have the pattern extraction and time-series modeling. The performance from the worst to the best is like the following:
+model_0 &lt;&lt; model_1 &lt; model_4 &lt; model_3 &lt; model_2 &lt; model_5</p>
+<p>model_0 without any time-series architecture is the worst one. After I start to add the temporal dependencies, like model_1, the CTC loss starts to see a huge improvement. In addition to the temporal dependencies, RNN, model_2 starts to have the additional improvment once I added the CNN layer to extract the feature. From model_1 to model_3, one more layer of RNN is added to further improve the temporal dependencies. Surprsingly, the model_4 with Bi-directional RNN does not show the better performance compared to model_1, but I really observe the performance will be kept improved if I have more epoches, only 20 for this experiment. This lead me to have a new model_5 with of the combination of CNN and Bidirectional RNN, including the proved feature extractions and the potential improved temporal dependencies. However, I have to watch out the validation performance which will show the serious overfitted model if the dropout layer is not applied.</p>
+<p>My final model will be created and apply what I learned above.</p>
 
 </div>
 </div>
@@ -13690,13 +13694,34 @@ the bil is ligeslagered neverd therty sicxemimers
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!!</span>jupyter nbconvert *.ipynb
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;[NbConvertApp] Converting notebook vui_notebook.ipynb to html&#39;,
+ &#39;[NbConvertApp] Writing 818382 bytes to vui_notebook.html&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
